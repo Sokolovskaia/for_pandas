@@ -1,3 +1,4 @@
+""" ТЕТРАДЬ++++++"""
 """     Методы value_counts(), sort_value(), unique(), nunique() """
 import pandas as pd
 import numpy as np
@@ -29,7 +30,7 @@ for_print_4 = df_m.nunique()    # возвращает серию по кажд�
 """     Метод value_counts()   
  подсчитываем количество одинаковых строк
  
- Строки с пропусками в подсчетах не учавствуют
+ Строки с пропусками в подсчетах не участвуют
  
  """
 
@@ -294,6 +295,7 @@ df_zadacha_6 = pd.DataFrame({
 # df_zadacha_6['product_price'] = df_zadacha_6['product_price'].map(lambda x: (str(x) + ' руб'), na_action='ignore')
 df_zadacha_6['product_price'] = df_zadacha_6['product_price'].map(lambda x: f'{x} руб', na_action='ignore')
 
+
 # Упражнение 7
 df_zadacha_7 = pd.DataFrame({
     'name': [f'Имя_{i}' for i in range(9)],
@@ -303,23 +305,31 @@ df_zadacha_7 = pd.DataFrame({
     '4': [1.0, 0.0, 1.0, 0.0, 0.0, 0.0, np.nan, 1.0, 0.0]
 })
 
-print(df_zadacha_7, end='\n'*2)
+df_zadacha_8 = pd.concat([df_zadacha_7['name'], df_zadacha_7.iloc[:, 1:].isin([1])], axis=1)
 
-def func_zadacha_7(series):
-    if series == 1:
-        series = series.replace(1, True)
-    else:
-        series = series.replace(1, True)
-    return series
+# Упражнение 8
+""" 
+В столбце 'name' указано имя студента, 
+столбцы с 1 до 50 - это номера задач.
+Получите DF/маску, в которой вместо элементов со значениями 0 и np.nan, стоит значение True, 
+а  все остальные элементы равны False.
+Результат запишите в переменную new_df. 
 
+    """
 
-new_df_77 = df_zadacha_7.apply(func_zadacha_7, axis=1)
-print(new_df_77, end='\n'*2)
+df_zadacha_88 = pd.DataFrame({
+    'name': [f'Имя_{i}' for i in range(9)],
+    '1': [1.0, 1.0, 1.0, 1.0, 1.0, 0.0, np.nan, 1.0, 0.0],
+    '2': [1.0, np.nan, 1.0, 1.0, 1.0, 0.0, 0.00, 1.0, 0.0],
+    '3': [0.0, 1.0, 1.0, 1.0, np.nan, 0.0, 1.0, 0.0, 0.0],
+    '4': [1.0, 0.0, 1.0, 0.0, 0.0, 0.0, np.nan, 1.0, 0.0]
+})
 
+# print(df_zadacha_88, end='\n'*1)
 
+df_new_zadacha_88 = df_zadacha_88.isin([0.0, np.nan])
 
-
-
+# print(df_new_zadacha_88, end='\n'*3)
 
 
 """     ЗАДАЧИ      """
@@ -532,126 +542,42 @@ df_12['buy'] = df_12['buy'].apply(lambda x: 'Не оплачено' if x == Fals
 
 """
 
-df_13 = pd.DataFrame({'product': ['товар_1', 'товар_2', 'товар_4', 'товар_1', 'товар_3'],
-                     'product_price': [5000, 3000, 5000, 2000, 1000],
-                     'count': [4, 2, 4, 2, 1], 'buy': [False, True, False, False, False]})
-
-# print(df_13, end='\n'*2)
-
+df_13 = pd.DataFrame({'product': ['товар_3', 'товар_2', 'товар_3', 'товар_1', 'товар_0', 'товар_2', 'товар_1', 'товар_3', 'товар_2', 'товар_3'],
+                     'product_price': [5000, 3000, 5000, 2000, 1000, 3000, 2000, 5000, 3000, 4000],
+                     'count': [4, 2, 4, 2, 1, 2, 2, 1, 2, 3],
+                     'buy': [False, True, True, True, True, False, True, True, False, False]})
 
 """
 В переменную prod запишите df дополнительно не указывая товар.
  В переменную prod_3 запишите df дополнительно указав 'товар_3'.
 """
 
-# def func(series, prod=np.nan):
-#     if series['buy'] or series['product'] == prod:
-#         price = series['product_price'] * series['count']
-#     else:
-#         price = np.nan
-#
-#     return price
 
-# def func(series, prod=np.nan):
-#     if series['product'] == np.nan:
-#         if series['buy']:
-#             price = series['product_price'] * series['count']
-#         else:
-#             price = np.nan
-#         return price
-#     elif series['buy'] or series['product'] == prod:
-#         price = series['product_price'] * series['count']
-#     else:
-#         price = np.nan
-#
-#     return price
-
-# def func(series, prod=np.nan):
-#     if prod != np.nan and series['product'] == prod:
-#         ###
-#         price = series['product_price'] * series['count']
-#     else:
-#         if series['buy']:
-#             price = series['product_price'] * series['count']
-#         else:
-#             price = np.nan
-#         return price
-#     return price
-
-# def func(series, **prod):
-#     if prod:
-#         if series['buy'] == True:
-#             price_1 = series['product_price'] * series['count']
-#         else:
-#             price_1 = np.nan
-#         price = price_1
-#         return price
-#     else:
-#         if series['product'] == prod:
-#             price_2 = series['product_price'] * series['count']
-#         else:
-#             price_2 = np.nan
-#         price = price_2
-#         return price
-#     return price
-
-#
-# def func(series, prod=np.nan):
-#     if prod is not np.nan:
-#         if series['product'] == prod:
-#             price = series['product_price'] * series['count']
-#         else:
-#             price = np.nan
-#     else:
-#         if series['buy'] == True:
-#             price = series['product_price'] * series['count']
-#         else:
-#             price = np.nan
-#     return price
-#
-# prod = df_13.copy()
-# prod_3 = df_13.copy()
-#
-#
-# prod['price'] = prod.apply(func, axis=1)
-# # prod = df_13.copy()
-# prod_3['price'] = prod_3.apply(func, axis=1, prod='товар_1')
-# # prod_3 = df_13.copy()
-#
-#
-# print(prod, end='\n'*2)
-# print(prod_3, end='\n'*2)
-
-# df_13['price'] = df_13.apply(lambda x: x['product_price']*x['count'] if x['buy'] else np.nan, axis=1)
-
-
-# print(df_13, end='\n'*2)
-
-def func(series, prod=None):
-    if prod:
-        if series['product'] == prod:
-            price = series['product_price'] * series['count']
-        else:
-            price = np.nan
-
+# Вариант 2
+def func_2(x, prod=None):
+    if (prod == None or x['product'] == prod) and x['buy']:
+        price = x['product_price'] * x['count']
     else:
-        if series['buy']:
-            price = series['product_price'] * series['count']
-        else:
-            price = np.nan
+        price = np.nan
     return price
+
+# Вариант 3
+def func_3(x, prod=None):
+    if (prod == None or x['product'] == prod) and x['buy']:
+        return x['product_price'] * x['count']
+    else:
+        return np.nan
+
 
 prod = df_13.copy()
 prod_3 = df_13.copy()
 
 
-prod['price'] = prod.apply(func, axis=1)
-# prod = df_13.copy()
-prod_3['price'] = prod_3.apply(func, axis=1, prod='товар_1')
-# prod_3 = df_13.copy()
+prod['price'] = prod.apply(func_3, axis=1)
+prod_3['price'] = prod_3.apply(func_3, axis=1, prod='товар_3')
 
-# df_13['price'] = df_13.apply(func, axis=1, prod='товар_4')
-# print(df_13)
 
-# print(prod, end='\n'*2)
-# print(prod_3, end='\n'*2)
+print(prod, end='\n'*2)
+print(prod_3, end='\n'*2)
+
+

@@ -69,6 +69,38 @@ max - максимальное значение в столбце.
 
 for_print_5 = df_i.describe()
 for_print_6 = series_i.describe()
+#
+# print(for_print_5, end='\n'*2)
+# print(for_print_6, end='\n'*2)
 
-print(for_print_5, end='\n'*2)
-print(for_print_6, end='\n'*2)
+
+
+
+
+df = pd.DataFrame({'name': ['Имя_1', 'Имя_2', 'Имя_3', 'Имя_4', 'Имя_5'],
+                   1: [True, True, True, True, False],
+                   2: [False, True, True, False, True],
+                   3: [True, False, True, True, True],
+                   4: [True, True, True, False, False],
+                   5: [True, False, True, True, False]})
+
+print(df)
+# DataFrame.all(axis=0, bool_only=False, skipna=True, **kwargs)
+# flag_ser = df.all(axis=1,  bool_only=True)
+flag = df.all(axis=1, bool_only=True).isin([True]).any()
+print(flag)
+
+
+
+# ВАРИАНТ 1
+# df = df.set_index('name')
+
+# df['sum'] = df.agg(np.sum, axis=1)
+# # print(df)
+# flag_count = df['sum'].isin([5]).sum()
+# if flag_count > 0:
+#     flag = True
+# else:
+#     flag = False
+
+

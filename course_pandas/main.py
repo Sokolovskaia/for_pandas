@@ -39,4 +39,3 @@ count_country = my_series3[my_series3['country'] == 'Russia']['population'].coun
 #  print(count_country)
 
 
-

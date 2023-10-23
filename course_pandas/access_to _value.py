@@ -1,3 +1,6 @@
+""" ТЕТРАДЬ++++++"""
+
+
 """     Методы at и iat. Методы loc и iloc
 at и iat для одного элемента
 loc и iloc для нескольких
@@ -125,7 +128,7 @@ df_1 = pd.DataFrame({
 # new_ser = df_1[~ df_1['зарплата'].isna()]['зарплата']
 # new_ser = df_1.loc[~df_1['зарплата'].isna(), 'зарплата']
 
-print(df_1)
+# print(df_1)
 df_1.loc[:, 'зарплата'].fillna(value=df_1['зарплата'].mean(), inplace=True)
 
 
